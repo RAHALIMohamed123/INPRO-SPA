@@ -1,0 +1,58 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-sm-4">
+          <h1>{{user.username}}'s Profile</h1>
+      </div>
+      <div class="col-sm-8">
+        <div *ngIf="editForm.dirty" class="alert alert-success">
+         <strong>Information :</strong> Cliquer sur le bouton <strong>Sauvegarder</strong> pour enregistrer les modifications.
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <img class="card-img-top img-thumbnail" src="{{user.photoUrl}}" alt="user?.username">
+          <div class="card-body">
+            <div>
+              <strong>Pays: </strong>
+              <p>{{user.country}}</p>
+            </div>
+            <div>
+              <strong>Cité: </strong>
+              <p>{{user.city}}</p>
+            </div>
+            <div>
+              <strong>Age: </strong>
+              <p>{{user.age}}</p>
+            </div>
+          </div>
+
+          <div class="card-footer">
+              <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Sauvegarder</button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-sm-8">
+        <div class="tab-panel">
+          <tabset class="member-tabset">
+            <tab heading="Edit profile">
+              <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
+                <div class="form-inline">
+                  <label for="city">City</label>
+                  <input type="text" class="form-control"  name="city" [(ngModel)]="user.city">
+                  <label for="country">Country</label>
+                  <input type="text" class="form-control"  name="country" [(ngModel)]="user.country">
+                </div>
+              </form>
+            </tab>
+            <tab heading="Edit photos">
+              <p>Photo edit will be here</p>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+  
+    </div>
+  </div>
